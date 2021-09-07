@@ -123,7 +123,7 @@ class EvaluacionesDropBoxDriveSteps:
 
             HtmlActions.click_html_element(btn_usuario, xpath='//div[@data-email="{}"]'.format(json_args['user']))
 
-            ValidacionesHtml.espera_desaparicion_modal_acceso_de_google(webdriver_test_ux, 60)
+            ValidacionesHtml.espera_desaparicion_modal_acceso_de_google(webdriver_test_ux, btn_usuario, 60)
 
             tiempo_step_inicio = Temporizador.obtener_tiempo_timer()
 
