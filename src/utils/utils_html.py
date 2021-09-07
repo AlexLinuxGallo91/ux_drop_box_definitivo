@@ -178,7 +178,7 @@ class ValidacionesHtml():
 
             # si han transcurrido mas de 15 segundos, se realiza un segundo intento de dar clic en el boton de
             # usuario de Gmail para acceder al portal
-            if tiempo_transcurrido > 15:
+            if tiempo_transcurrido % 5 == 0:
 
                 try:
                     boton_user_gmail.click()
