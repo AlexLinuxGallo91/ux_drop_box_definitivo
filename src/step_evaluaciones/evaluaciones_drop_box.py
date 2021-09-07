@@ -109,8 +109,14 @@ class EvaluacionesDropBoxDriveSteps:
 
                 webdriver_test_ux.switch_to.window(ventana_hija)
 
+            HtmlActions.webdriver_wait_presence_of_element_located(
+                webdriver_test_ux, const.TIMEOUT_STEP_INICIO_SESION_DROP_BOX_HEADING_TEXT, id='headingText')
+
+            view_container = HtmlActions.webdriver_wait_presence_of_element_located(
+                webdriver_test_ux, const.TIMEOUT_STEP_INICIO_SESION_DROP_BOX_VIEW_CONTAINER, id='view_container')
+
             btn_usuario = HtmlActions.webdriver_wait_element_to_be_clickable(
-                webdriver_test_ux, const.TIMEOUT_STEP_INICIO_SESION_DROP_BOX_BOTON_INICIO_SESION_GMAIL,
+                view_container, const.TIMEOUT_STEP_INICIO_SESION_DROP_BOX_BOTON_INICIO_SESION_GMAIL,
                 xpath='//div[@data-email="{}"]'.format(json_args['user']))
 
             time.sleep(const.TIMEOUT_STEP_INICIO_SESION_DROP_BOX_ESPERA_RENDER_BOTON_USUARIO_GMAIL)
