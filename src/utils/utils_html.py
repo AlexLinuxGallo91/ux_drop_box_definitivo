@@ -177,4 +177,3 @@ class ValidacionesHtml():
 
             time.sleep(1)
             tiempo_transcurrido += 1
-            print('esperando a que desaparezca el modal de login de google: {} seg'.format(tiempo_transcurrido))

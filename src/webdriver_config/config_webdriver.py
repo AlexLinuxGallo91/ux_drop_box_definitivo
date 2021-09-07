@@ -70,8 +70,8 @@ class ConfiguracionWebDriver:
         perfil_firefox.set_preference("browser.download.lastDir", config_constantes.PATH_CARPETA_DESCARGA)
         perfil_firefox.set_preference("browser.download.dir", config_constantes.PATH_CARPETA_DESCARGA)
         perfil_firefox.set_preference("browser.download.manager.showWhenStarting", False)
-        perfil_firefox.set_preference("browser.helperApps.neverAsk.saveToDisk", 'image/png')
-        perfil_firefox.set_preference("browser.helperApps.neverAsk.openFile", 'image/png')
+        perfil_firefox.set_preference("browser.helperApps.neverAsk.saveToDisk", mimeTypes)
+        perfil_firefox.set_preference("browser.helperApps.neverAsk.openFile", mimeTypes)
         perfil_firefox.set_preference("browser.download.viewableInternally.enabledTypes", "")
         perfil_firefox.set_preference("browser.download.useDownloadDir", True)
 
