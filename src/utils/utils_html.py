@@ -165,7 +165,8 @@ class ValidacionesHtml():
             time.sleep(1)
 
     @staticmethod
-    def espera_desaparicion_modal_acceso_de_google(web_driver: WebDriver, tiempo_de_espera: int = 60):
+    def espera_desaparicion_modal_acceso_de_google(
+            web_driver: WebDriver, boton_user_gmail, tiempo_de_espera: int = 60):
 
         tiempo_transcurrido = 0
 
@@ -174,6 +175,21 @@ class ValidacionesHtml():
 
             if numero_ventanas_activas < 2:
                 break
+
+            # si han transcurrido mas de 15 segundos, se realiza un segundo intento de dar clic en el boton de
+            # usuario de Gmail para acceder al portal
+            if tiempo_transcurrido > 15:
+
+                try:
+                    boton_user_gmail.click()
+                except ElementNotInteractableException as e:
+                    pass
+                except NoSuchElementException as e:
+                    pass
+                except TimeoutException as e:
+                    pass
+                except ElementClickInterceptedException as e:
+                    pass
 
             time.sleep(1)
             tiempo_transcurrido += 1
