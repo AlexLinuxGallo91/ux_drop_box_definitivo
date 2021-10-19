@@ -8,6 +8,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import NoSuchWindowException
+from selenium.common.exceptions import StaleElementReferenceException
 from src.webdriver_actions.html_actions import webdriver_actions_constantes
 import time
 import re
@@ -190,6 +191,8 @@ class ValidacionesHtml():
                 except TimeoutException as e:
                     pass
                 except ElementClickInterceptedException as e:
+                    pass
+                except StaleElementReferenceException as e:
                     pass
 
             time.sleep(1)
