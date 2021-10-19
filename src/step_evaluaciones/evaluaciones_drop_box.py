@@ -35,9 +35,9 @@ class EvaluacionesDropBoxDriveSteps:
                 boton_imagen_perfil = HtmlActions.webdriver_wait_element_to_be_clickable(
                     webdriver_test_ux,
                     const.TIMEOUT_STEP_INGRESO_PAGINA_PRINCIPAL_BOTON_IMG_PERFIL,
-                    class_name='account-menu-v2__avatar')
+                    class_name='dig-Avatar-image')
 
-                HtmlActions.click_html_element(boton_imagen_perfil, class_name='account-menu-v2__avatar')
+                HtmlActions.click_html_element(boton_imagen_perfil, class_name='dig-Avatar-image')
 
                 boton_salir_sesion = HtmlActions.webdriver_wait_element_to_be_clickable(
                     webdriver_test_ux, const.TIMEOUT_STEP_INGRESO_PAGINA_PRINCIPAL_BOTON_SALIR_SESION,
@@ -123,6 +123,26 @@ class EvaluacionesDropBoxDriveSteps:
 
             HtmlActions.click_html_element(btn_usuario, xpath='//div[@data-email="{}"]'.format(json_args['user']))
 
+            # verifica que despues de dar clic en el boton del usuario, no aparezca el input para ingresar la contraseña
+            # de lo contrario, se tratara de ingresarla en el input y proceder con la experiencia de usuario
+            if ValidacionesHtml.modal_gmail_solicitando_password(webdriver_test_ux):
+                div_password_gmail = HtmlActions.webdriver_wait_presence_of_element_located(
+                    webdriver_test_ux, id='password')
+
+                input_password_gmail = HtmlActions.webdriver_wait_element_to_be_clickable(
+                    div_password_gmail, name='password')
+
+                input_password_gmail.clear()
+
+                HtmlActions.enviar_data_keys(input_password_gmail, json_args['password'], id='password')
+
+                time.sleep(2)
+
+                boton_inicio_de_sesion = HtmlActions.webdriver_wait_presence_of_element_located(
+                    webdriver_test_ux, id='passwordNext')
+
+                HtmlActions.click_html_element(boton_inicio_de_sesion, id='passwordNext')
+
             ValidacionesHtml.espera_desaparicion_modal_acceso_de_google(webdriver_test_ux, btn_usuario, 60)
 
             tiempo_step_inicio = Temporizador.obtener_tiempo_timer()
@@ -191,12 +211,12 @@ class EvaluacionesDropBoxDriveSteps:
             ValidacionesHtml.verificar_mensaje_de_carga_exitosa_de_archivo(
                 webdriver_test_ux, nombre_archivo_con_ext, const.TIMEOUT_STEP_CARGA_ARCHIVO_VERIFICACION_CARGA_EXITOSA)
 
-            btn_cerrar_progreso_carga = HtmlActions.webdriver_wait_presence_of_element_located(
+            btn_cerrar_progreso_carga = HtmlActions.webdriver_wait_element_to_be_clickable(
                 webdriver_test_ux, const.TIMEOUT_STEP_CARGA_ARCHIVO_BOTON_CIERRE_PROGRESO_CARGA,
-                xpath='//button[@data-testid="rich-snackback-close-btn"]')
+                xpath='//button[@data-testid="rich-snackbar-close-btn"]')
 
             HtmlActions.click_html_element(btn_cerrar_progreso_carga,
-                                           xpath='//button[@data-testid="rich-snackback-close-btn"]')
+                                           xpath='//button[@data-testid="rich-snackbar-close-btn"]')
 
             json_eval = UtilsEvaluaciones.establecer_output_status_step(
                 json_eval, 2, 0, True, const.MSG_OUTPUT_CARGA_ARCHIVO_EXITOSO)
@@ -240,11 +260,14 @@ class EvaluacionesDropBoxDriveSteps:
             ValidacionesHtml.verificar_remover_ventana_configuracion(webdriver_test_ux)
 
             search_bar = HtmlActions.webdriver_wait_element_to_be_clickable(
-                webdriver_test_ux, const.TIMEOUT_STEP_DESCARGA_ARCHIVO_BARRA_BUSQUEDA, class_name='search__input')
+                webdriver_test_ux, const.TIMEOUT_STEP_DESCARGA_ARCHIVO_BARRA_BUSQUEDA,
+                class_name='dig-GlobalHeader-Search__input')
 
-            HtmlActions.enviar_data_keys(search_bar, nombre_archivo_con_ext, class_name='search__input')
+            HtmlActions.enviar_data_keys(
+                search_bar, nombre_archivo_con_ext, class_name='dig-GlobalHeader-Search__input')
 
-            HtmlActions.enviar_data_keys(search_bar, Keys.RETURN, class_name='search__input')
+            HtmlActions.enviar_data_keys(
+                search_bar, Keys.RETURN, class_name='dig-GlobalHeader-Search__input')
 
             archivo_por_descargar = HtmlActions.webdriver_wait_element_to_be_clickable(
                 webdriver_test_ux, const.TIMEOUT_STEP_DESCARGA_ARCHIVO_ELEM_HTML_ARCHIVO_POR_DESCARGAR,
@@ -378,9 +401,9 @@ class EvaluacionesDropBoxDriveSteps:
         try:
             boton_imagen_perfil = HtmlActions.webdriver_wait_element_to_be_clickable(
                 webdriver_test_ux, const.TIMEOUT_STEP_CIERRE_DE_SESION_BOTON_IMAGEN_PERFIL,
-                class_name='account-menu-v2__avatar')
+                class_name='dig-Avatar-image')
 
-            HtmlActions.click_html_element(boton_imagen_perfil, class_name='account-menu-v2__avatar')
+            HtmlActions.click_html_element(boton_imagen_perfil, class_name='dig-Avatar-image')
 
             boton_salir_sesion = HtmlActions.webdriver_wait_element_to_be_clickable(
                 webdriver_test_ux, const.TIMEOUT_STEP_CIERRE_DE_SESION_BOTON_SALIR_SESION,

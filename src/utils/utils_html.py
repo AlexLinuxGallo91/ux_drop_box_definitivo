@@ -7,6 +7,7 @@ from selenium.common.exceptions import ElementNotInteractableException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import ElementClickInterceptedException
+from selenium.common.exceptions import NoSuchWindowException
 from src.webdriver_actions.html_actions import webdriver_actions_constantes
 import time
 import re
@@ -193,3 +194,22 @@ class ValidacionesHtml():
 
             time.sleep(1)
             tiempo_transcurrido += 1
+
+    @staticmethod
+    def modal_gmail_solicitando_password(web_driver: WebDriver, tiempo_de_espera: int = 8):
+        result = False
+        segundos_transcurridos = 0
+
+        while segundos_transcurridos < tiempo_de_espera:
+
+            try:
+                if ValidacionesHtml.verificar_elemento_html_por_id('password', web_driver):
+                    result = True
+                    break
+            except NoSuchWindowException:
+                break
+
+            time.sleep(1)
+            segundos_transcurridos = segundos_transcurridos + 1
+
+        return result
