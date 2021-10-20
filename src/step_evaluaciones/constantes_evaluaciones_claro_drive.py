@@ -39,6 +39,52 @@ MSG_ELIMINACION_ARCHIVO_FALLIDA_POR_CARGA_ARCHIVO_FALLIDA = 'No fue posible elim
 MSG_CIERRE_SESION_FALLIDA_POR_INICIO_DE_SESION = 'No fue posible realizar el cierre de sesion dentro de la ' \
     'plataforma Drop Box. Inicio de sesion dentro de la plataforma sin exito.'
 
+# identificadores html de cada elemento por localizar
+
+# STEP INGRESO DE PAGINA PRINCIPAL
+HTML_STEP_INGRESO_PAGINA_ID_PORTAL_PRINCIPAL = 'maestro-portal'
+HTML_STEP_INGRESO_PAGINA_CLASS_NAME_BOTON_PERFIL_USUARIO = 'dig-Avatar'
+HTML_STEP_INGRESO_PAGINA_XPATH_BOTON_CIERRE_DE_SESION = '//div[@class="dig-Menu-row-title"][text()="Salir"]'
+HTML_STEP_INGRESO_PAGINA_NAME_INPUT_LOGIN_EMAIL = 'login_email'
+HTML_STEP_INGRESO_PAGINA_NAME_INPUT_LOGIN_PASSWORD = 'login_password'
+
+# STEP INICIO SESION DROPBOX
+HTML_STEP_INICIO_SESION_XPATH_BTN_INICIO_SESION = '//button[@class="auth-google button-primary"]'
+HTML_STEP_INICIO_SESION_ID_HEADING_TEXT = 'headingText'
+HTML_STEP_INICIO_SESION_ID_VIEW_CONTAINER = 'view_container'
+HTML_STEP_INICIO_SESION_XPATH_BTN_USUARIO = '//div[@data-email="{}"]'
+HTML_STEP_INICIO_SESION_ID_DIV_PASSWORD_GMAIL = 'password'
+HTML_STEP_INICIO_SESION_NAME_INPUT_PASSWORD_GMAIL = 'password'
+HTML_STEP_INICIO_SESION_ID_BTN_INICIO_DE_SESION = 'passwordNext'
+HTML_STEP_INICIO_SESION_CLASS_NAME_DIV_MAESTRO_PORTAL = 'maestro-portal'
+
+# STEP CARGAR ARCHIVO DROPBOX
+HTML_STEP_CARGAR_ARCHIVO_URL_ROLE_PERSONAL = 'https://www.dropbox.com/h?role=personal'
+HTML_STEP_CARGAR_ARCHIVO_CLASS_NAME_FOOTER = 'dig-Modal-footer'
+HTML_STEP_CARGAR_ARCHIVO_CLASS_NAME_BTN_CARGA = 'dig-Button--primary'
+HTML_STEP_CARGAR_ARCHIVO_XPATH_BTN_CERRAR_PROGRESO_CARGA = '//button[@data-testid="rich-snackbar-close-btn"]'
+
+# STEP DESCARGA ARCHIVO DROPBOX
+HTML_STEP_DESCARGA_ARCHIVO_CLASS_NAME_SEARCH_BAR = 'dig-GlobalHeader-Search__input'
+HTML_STEP_DESCARGA_ARCHIVO_XPATH_ARCHIVO_POR_DESCARGAR = '//tr[@data-filename="{}"]'
+HTML_STEP_DESCARGA_ARCHIVO_CLASS_NAME_CHECKBOX = 'brws-checkbox-cell'
+HTML_STEP_DESCARGA_ARCHIVO_XPATH_BTN_MAS_ACCIONES = '//button[@data-testid="action-bar-overflow"]'
+HTML_STEP_DESCARGA_ARCHIVO_XPATH_BTN_DESCARGAR = '//div[@class="dig-Menu-row-title"][text()="Descargar"]'
+
+# STEP ELIMINAR ARCHIVO DROPBOX
+HTML_STEP_ELIMINAR_ARCHIVO_XPATH_ARCHIVO_POR_ELIMINAR = '//tr[@data-filename="{}"]'
+HTML_STEP_ELIMINAR_ARCHIVO_XPATH_BTN_MAS_ACCIONES = '//button[@data-testid="action-bar-overflow"]'
+HTML_STEP_ELIMINAR_ARCHIVO_XPATH_BTN_ELIMINAR = '//div[@class="dig-Menu-row-title"][text()="Eliminar"]'
+HTML_STEP_ELIMINAR_ARCHIVO_XPATH_BTN_ELIMINAR_MODAL = '//span[@class="dig-Button-content"][text()="Eliminar"]'
+HTML_STEP_ELIMINAR_ARCHIVO_XPATH_MSG_ELIMINACION_EXITOSA = '//span[@class="dig-Snackbar-message "][text()="Se ' \
+                                                           'elimin\u00F3 1 elemento."]'
+
+# STEP CERRAR SESION DROPBOX
+HTML_STEP_CERRAR_SESION_CLASS_NAME_BTN_IMAGEN_PERFIL = 'dig-Avatar'
+HTML_STEP_CERRAR_SESION_XPATH_BTN_CERRAR_SESION = '//div[@class="dig-Menu-row-title"][text()="Salir"]'
+HTML_STEP_CERRAR_SESION_NAME_INPUT_LOGIN_EMAIL = 'login_email'
+HTML_STEP_CERRAR_SESION_NAME_INPUT_LOGIN_PASSWORD = 'login_password'
+
 # TIEMPOS DE CADA EJECUCION DE STEP
 
 # STEP INGRESO DE PAGINA PRINCIPAL
