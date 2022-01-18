@@ -152,6 +152,14 @@ class ValidacionesHtml():
                                           tiempo_de_espera: int = 10):
         seg_transcurridos = 0
 
+        script_disable_open_file_dialog = """
+            HTMLInputElement.prototype.click = function() {                     
+                if(this.type !== 'file') HTMLElement.prototype.click.call(this);
+            };                                                                  
+        """
+
+        web_driver.execute_script(script_disable_open_file_dialog)
+
         while seg_transcurridos < tiempo_de_espera:
 
             lista_de_input_file = web_driver.find_elements_by_xpath('//input[@type="file"]')
@@ -160,8 +168,11 @@ class ValidacionesHtml():
                 break
 
             if len(lista_de_input_file) > 0:
-                input_file = lista_de_input_file[0]
-                input_file.send_keys(path_archivo_por_cargar)
+                lista_de_input_file[0].send_keys(path_archivo_por_cargar)
+
+            # se da clic en el boton 'Cargar Archivos'
+            web_driver.execute_script(
+                "document.querySelector('.uee-AppActionsView-SecondaryActionMenu-text-upload-file').click()")
 
             seg_transcurridos += 1
             time.sleep(1)

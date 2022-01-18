@@ -10,12 +10,14 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.common.action_chains import ActionChains
 
 from src.step_evaluaciones import constantes_evaluaciones_claro_drive as const
 from src.utils.utils_evaluaciones import UtilsEvaluaciones
 from src.utils.utils_html import ValidacionesHtml
 from src.utils.utils_temporizador import Temporizador
 from src.webdriver_actions.html_actions import HtmlActions
+
 
 
 class EvaluacionesDropBoxDriveSteps:
@@ -201,7 +203,7 @@ class EvaluacionesDropBoxDriveSteps:
             ValidacionesHtml.verificar_remover_ventana_configuracion(webdriver_test_ux)
             ValidacionesHtml.verificar_archivo_ya_existente_en_portal(webdriver_test_ux, nombre_archivo_sin_ext)
 
-            # seingresa a la pagina principal del portal
+            # se ingresa a la pagina principal del portal
             webdriver_test_ux.get(const.HTML_STEP_CARGAR_ARCHIVO_URL_ROLE_PERSONAL)
 
             ValidacionesHtml.cargar_archivo_en_portal_drop_box(
@@ -364,12 +366,8 @@ class EvaluacionesDropBoxDriveSteps:
             HtmlActions.click_html_element(
                 btn_eliminar, xpath=const.HTML_STEP_ELIMINAR_ARCHIVO_XPATH_BTN_ELIMINAR)
 
-            btn_eliminar_modal = HtmlActions.webdriver_wait_element_to_be_clickable(
-                webdriver_test_ux, const.TIMEOUT_STEP_ELIMINACION_ARCHIVO_BOTON_ELIMINAR_MODAL,
-                xpath=const.HTML_STEP_ELIMINAR_ARCHIVO_XPATH_BTN_ELIMINAR_MODAL)
-
-            HtmlActions.click_html_element(
-                btn_eliminar_modal, xpath=const.HTML_STEP_ELIMINAR_ARCHIVO_XPATH_BTN_ELIMINAR_MODAL)
+            action = ActionChains(webdriver_test_ux)
+            action.send_keys(Keys.TAB).send_keys(Keys.TAB).send_keys(Keys.TAB).send_keys(Keys.ENTER).perform()
 
             HtmlActions.webdriver_wait_presence_of_element_located(
                 webdriver_test_ux, const.TIMEOUT_STEP_ELIMINACION_ARCHIVO_MENSAJE_ELIMINACION_ELEMENTO,
